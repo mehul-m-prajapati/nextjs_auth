@@ -34,7 +34,7 @@ function SignupPage() {
 
     } catch (error: any) {
         console.log(error.message);
-        toast.error(error.response.data.error);
+        toast.error(error.message);
     }
     finally {
         setLoading(false);
