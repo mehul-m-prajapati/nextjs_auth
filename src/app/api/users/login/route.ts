@@ -4,7 +4,6 @@ import bcryptjs from "bcryptjs";
 import UserModel from "@/models/userModel"
 import { NextResponse } from "next/server";
 
-
 connect();
 
 export async function POST(request: Request) {
@@ -13,8 +12,6 @@ export async function POST(request: Request) {
 
         const reqBody = await request.json();
         const {email, password} = reqBody;
-
-        console.log(reqBody);
 
         //check if user exists
         const user = await UserModel.findOne({email});

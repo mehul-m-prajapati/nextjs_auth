@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Link from "next/link";
 import axios from "axios";
 import { toast } from "react-hot-toast";
@@ -33,8 +33,8 @@ function LoginPage() {
         router.push('/profile');
 
     } catch (error: any) {
-        console.log("Login failed", error.message);
-        toast.error(error.message);
+        console.log(error.message);
+        toast.error(error.response.data.error);
     }
     finally {
         setLoading(false);
@@ -74,7 +74,7 @@ function LoginPage() {
             Login here
         </button>
         <p>Not a Member?</p>
-        <Link className="inline-block bg-blue-950 hover:bg-blue-800 text-white font-semibold
+        <Link className="inline-block bg-blue-900 hover:bg-blue-800 text-white
         py-1 px-2 rounded" href="/signup">Sign Up</Link>
     </div>
   )
