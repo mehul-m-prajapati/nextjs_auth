@@ -16,6 +16,21 @@ function LoginPage() {
   });
   const [loading, setLoading] = useState(false);
 
+  const sendResetPasswdEmail = async () => {
+    try {
+        if (!user.email) {
+            toast.error("Please enter email");
+            return;
+        }
+        const resp = await axios.post('/api/users/resetEmail', {email: user.email});
+        toast.success(resp.data.message);
+    }
+    catch (error: any) {
+        toast.error(error.response?.data?.message);
+        //toast.error(error.message);
+    }
+  }
+
   const onLogin = async () => {
 
     if (!user.email || !user.password) {
@@ -27,7 +42,6 @@ function LoginPage() {
         setLoading(true);
 
         const resp = await axios.post('/api/users/login', user);
-        console.log('Login success', resp.data);
         toast.success("Login success");
 
         router.push('/profile');
@@ -76,6 +90,12 @@ function LoginPage() {
         <p>Not a Member?</p>
         <Link className="inline-block bg-blue-900 hover:bg-blue-800 text-white
         py-1 px-2 rounded" href="/signup">Sign Up</Link>
+
+        <p className="mt-8"></p>
+        <button onClick={sendResetPasswdEmail} className="p-2 border border-gray-300
+         rounded-lg mb-4 cursor-pointer bg-amber-950 hover:bg-gray-800 focus:outline-none focus:border-gray-600">
+            Forgot Password?
+        </button>
     </div>
   )
 }
