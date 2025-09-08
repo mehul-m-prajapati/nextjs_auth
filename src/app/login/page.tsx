@@ -22,7 +22,7 @@ function LoginPage() {
             toast.error("Please enter email");
             return;
         }
-        const resp = await axios.post('/api/users/resetEmail', {email: user.email});
+        const resp = await axios.post('/api/users/sendResetEmail', {email: user.email});
         toast.success(resp.data.message);
     }
     catch (error: any) {

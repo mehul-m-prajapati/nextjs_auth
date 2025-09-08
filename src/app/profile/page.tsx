@@ -29,12 +29,11 @@ function ProfilePage() {
 
     try {
         const res = await axios.get('/api/users/me');
-        console.log(res.data);
         setData(res.data.data._id);
         setProfile(res.data.data);
     }
-    catch (error) {
-        console.log(error);
+    catch (error: any) {
+        console.log(error.message);
     }
   }
 
